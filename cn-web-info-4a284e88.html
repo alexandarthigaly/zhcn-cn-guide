@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pg电子 资料索引 · 知识库式介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f2f4f8;
+      color: #1e2a3a;
+      line-height: 1.6;
+    }
+
+    /* 深色头图 – 目录感背景 */
+    .hero {
+      background: #1c2636;
+      padding: 4rem 2rem 3.5rem;
+      text-align: center;
+      border-bottom: 4px solid #eab843;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #f0f2f5;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #b8c7db;
+      max-width: 640px;
+      margin: 0 auto;
+      font-weight: 350;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      margin-top: 1.6rem;
+      background: #eab843;
+      color: #1c2636;
+      padding: 0.25rem 1.1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+    }
+
+    /* 正文容器 */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.4rem 1.5rem 3rem;
+    }
+
+    /* 卡片式目录区 */
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 550;
+      border-left: 5px solid #eab843;
+      padding-left: 1rem;
+      margin: 2.5rem 0 1.5rem;
+      color: #1c2a3c;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0.2rem;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 14px;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.2s, transform 0.15s;
+      border: 1px solid #e8ecf1;
+    }
+
+    .info-card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .info-card h3 {
+      font-size: 1.1rem;
+      font-weight: 550;
+      margin-bottom: 0.5rem;
+      color: #1e2a3a;
+    }
+
+    .info-card p {
+      font-size: 0.92rem;
+      color: #3f4d62;
+      margin-bottom: 0.6rem;
+    }
+
+    .info-card .tag {
+      display: inline-block;
+      background: #eef2f7;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      color: #2f4058;
+    }
+
+    /* 说明区 + 提示区两栏 */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .note-box {
+      background: white;
+      padding: 1.6rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e4eaf0;
+    }
+
+    .note-box h4 {
+      font-size: 1.05rem;
+      font-weight: 540;
+      margin-bottom: 0.8rem;
+      color: #1f2d3f;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .note-box p {
+      font-size: 0.93rem;
+      color: #2f4058;
+    }
+
+    .tip-box {
+      background: #faf9f7;
+      border-left: 4px solid #eab843;
+      padding: 1.6rem 1.5rem;
+      border-radius: 12px;
+    }
+
+    .tip-box h4 {
+      font-size: 1.05rem;
+      font-weight: 540;
+      margin-bottom: 0.6rem;
+      color: #1f2d3f;
+    }
+
+    .tip-box ul {
+      margin: 0.4rem 0 0 1.2rem;
+      font-size: 0.92rem;
+      color: #2f4058;
+    }
+
+    .tip-box li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* FAQ摘要 */
+    .faq-mini {
+      background: white;
+      border-radius: 18px;
+      padding: 1.6rem 2rem;
+      margin: 2rem 0 1rem;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e2e8f0;
+    }
+
+    .faq-mini h4 {
+      font-size: 1.2rem;
+      font-weight: 540;
+      margin-bottom: 1rem;
+      color: #1a283a;
+    }
+
+    .faq-item {
+      margin-bottom: 0.9rem;
+      border-bottom: 1px dashed #dce2ea;
+      padding-bottom: 0.9rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-item strong {
+      color: #1e2a3a;
+      font-weight: 550;
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: 0.98rem;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #3c4d62;
+      margin: 0;
+    }
+
+    /* 相关信息区 */
+    .related-links {
+      margin: 2.8rem 0 1.5rem;
+      padding: 1.2rem 0;
+      border-top: 1px solid #d5dde7;
+    }
+
+    .related-links p {
+      font-size: 0.92rem;
+      color: #2d4059;
+    }
+
+    .related-links a {
+      color: #b8862c;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border 0.2s;
+    }
+
+    .related-links a:hover {
+      border-bottom-color: #b8862c;
+    }
+
+    .inline-link {
+      color: #b8862c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .inline-link:hover {
+      text-decoration: underline;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .grid-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .page-wrap {
+        padding: 1.8rem 1rem 2.5rem;
+      }
+
+      .faq-mini {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .grid-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    a {
+      transition: color 0.15s;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图：目录感 -->
+  <header class="hero">
+    <h1>pg电子 · 资料索引</h1>
+    <p class="sub">从信息整理与知识归档的角度，梳理平台内容结构、背景与常用线索</p>
+    <span class="badge">📋 目录式布局 · 说明 · 提示 · 相关信息</span>
+  </header>
+
+  <main class="page-wrap">
+
+    <!-- 卡片目录区：核心知识块 -->
+    <div class="section-title">📌 内容索引 / 资料卡片</div>
+    <div class="grid-cards">
+      <div class="info-card">
+        <h3>平台概览</h3>
+        <p>汇集 <a href="https://cn-web-pgsoft.com" class="inline-link">pg电子</a> 体系内主要产品方向与资源结构，便于快速定位。</p>
+        <span class="tag">入口定位</span>
+      </div>
+      <div class="info-card">
+        <h3>频道与模块</h3>
+        <p>按功能划分的信息单元：展示区、说明文档、更新记录与常见索引。</p>
+        <span class="tag">结构归档</span>
+      </div>
+      <div class="info-card">
+        <h3>使用场景</h3>
+        <p>适用于常规浏览、资料比对、内容梳理与信息回溯等场景。</p>
+        <span class="tag">应用参考</span>
+      </div>
+      <div class="info-card">
+        <h3>辅助参考</h3>
+        <p>关联文档与补充说明，帮助理解上下文和内容组织方式。</p>
+        <span class="tag">背景补充</span>
+      </div>
+    </div>
+
+    <!-- 说明区 + 提示区（两栏） -->
+    <div class="two-column">
+      <div class="note-box">
+        <h4>📖 说明区 · 资料整理视角</h4>
+        <p>本页基于对 <a href="https://cn-web-pgsoft.com" class="inline-link">pg电子</a> 相关信息源的整理，建立小型知识入口。内容以归纳与索引为主，不替代原始页面。通过分类卡片和段落说明，帮助使用者更快理解整体脉络。</p>
+        <p style="margin-top: 0.8rem;">每一部分均保留可回溯的线索，方便后续查阅与扩展。整体结构以信息透明和简洁为原则，不做过度演绎。</p>
+      </div>
+      <div class="tip-box">
+        <h4>💡 提示区 · 使用建议</h4>
+        <ul>
+          <li>建议将本页作为资料检索的起点，先浏览卡片目录再深入具体模块。</li>
+          <li>部分链接指向外部资料，注意核对信息发布时间。</li>
+          <li>如果寻找特定主题，可直接使用站内搜索或关键词定位。</li>
+          <li>内容保持客观，不设隐藏跳转或引导性话术。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要（轻量问答） -->
+    <div class="faq-mini">
+      <h4>❓ 常见问题摘要（FAQ）</h4>
+      <div class="faq-item">
+        <strong>这个页面主要提供什么？</strong>
+        <p>一个围绕 pg电子 信息体系的知识库式索引，包含内容说明、分类卡片、使用提示和相关信息，不涉及具体产品操作或数据。</p>
+      </div>
+      <div class="faq-item">
+        <strong>是否有官方背景？</strong>
+        <p>本页为独立整理的内容参考页，相关引用均标注原始出处。所有指向 <a href="https://cn-web-pgsoft.com" class="inline-link">pg电子</a> 的链接均为直接超链接，用于信息追溯。</p>
+      </div>
+      <div class="faq-item">
+        <strong>信息更新频率如何？</strong>
+        <p>索引内容根据公开资料不定期整合，建议以原始页面最新版本为准。具体更新时间可参考页面底部的相关信息。</p>
+      </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="related-links">
+      <p>✦ 相关信息 · 如需进一步了解背景或浏览原始资源，可参考 <a href="https://cn-web-pgsoft.com">pg电子</a> 的页面内容。本页作为辅助索引，不构成官方立场。</p>
+      <p style="margin-top: 0.6rem; font-size: 0.88rem; color: #54657c;">整理时间：2025 · 资料编号 · 目录版本 beta</p>
+    </div>
+
+  </main>
+
+  <!-- 底部微小标志，不干扰主体 -->
+  <footer style="text-align: center; font-size: 0.75rem; padding: 1.8rem 0 1.2rem; color: #8896a8; border-top: 1px solid #e2e8ef; background: #f2f4f8;">
+    <span>知识库式索引 · 内容以信息整理为出发点</span>
+  </footer>
+</body>
+</html>
